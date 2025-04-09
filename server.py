@@ -14,9 +14,13 @@ class JSONValidatorHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/html; charset=utf-8')
             self.end_headers()
             
-            with open(TEMPLATES_DIR / 'index.html', 'r', encoding='utf-8') as f:
-                html = f.read()
-            self.wfile.write(html.encode('utf-8'))
+            with open(TEMPLATES_DIR / 'result.html', 'r', encoding='utf-8') as f:
+                html = f.read().format(
+                    json_data=json_data,
+                    result=result_html,
+                    error_line=error_line if 'error_line' in locals() and error_line is not None else 'null',
+                    error_pos=error_pos if 'error_pos' in locals() and error_pos is not None else 'null'
+                )
         
         elif self.path.startswith('/static/'):
             try:
