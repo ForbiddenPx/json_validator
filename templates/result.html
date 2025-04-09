@@ -19,10 +19,12 @@
     </div>
     <script src="/static/script.js"></script>
     <script>
-        initEditor({{
-            error_line: {error_line},
-            error_pos: {error_pos}
-        }});
+        document.addEventListener('DOMContentLoaded', function() {
+            initEditor({{
+                error_line: {error_line},
+                error_pos: {error_pos}
+            }});
+        });
     </script>
 </body>
 </html>
